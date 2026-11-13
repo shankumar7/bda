@@ -1,0 +1,6 @@
+big	2
+data	2
+hadoop	3
+hello	3
+is	1
+world	2
