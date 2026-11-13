@@ -3,22 +3,20 @@ import java.util.*;
 public class add7 {
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new FileReader("marks.csv"));
-        Map<String, Integer> result = new TreeMap<>();
+        Set<String> all = new HashSet<>();
+        Set<String> failed = new HashSet<>();
         String line;
         br.readLine();
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             int marks = Integer.parseInt(data[3]);
-            String status = "Passed";
+            all.add(data[0]);
             if (marks < 40) {
-                status = "Failed";
+                failed.add(data[0]);
             }
-            result.put(status, result.getOrDefault(status, 0) + 1);
         }
         br.close();
-        System.out.println("Result\tCount");
-        for (String status : result.keySet()) {
-            System.out.println(status + "\t" + result.get(status));
-        }
+        System.out.println("Passed\t" + (all.size() - failed.size()));
+        System.out.println("Failed\t" + failed.size());
     }
 }
